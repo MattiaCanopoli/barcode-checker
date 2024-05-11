@@ -18,7 +18,7 @@ with  open("csv/db-barcode.csv", mode='r') as dbBarcode:
             continue
         dbList.append(riga[0])
 
-print(dbList)
+# print(dbList)
 
 def aggiuntaBarcode():
     #inserire if che verifica che il barcode inserito sia nel csv importato. se true appende barcode alla lista, se false restiuisce messaggio di errore
@@ -30,14 +30,17 @@ def aggiuntaBarcode():
 
 
 def creaFile():
-    nomeFile= 'output file/' + input('come vuoi chiamare il file?\n') + '.txt' #richiede il nome file all'utente
-    file=open(nomeFile,'w') #crea il file con il nome scelto
-    
-    #scrive tutti i barcode salvati in lista barcode nel nuovo file
-    for barcode in listaBarcode:
-        file=open(nomeFile, 'a')
-        file.write(barcode)
-        file.write('\n') 
-    file.close()
-    #stampa messaggio di avvenuta scrittura del file
-    print('file ' + nomeFile + ' creato')
+    if listaBarcode:
+        nomeFile= 'output file/' + input('come vuoi chiamare il file?\n') + '.txt' #richiede il nome file all'utente
+        file=open(nomeFile,'w') #crea il file con il nome scelto
+        
+        #scrive tutti i barcode salvati in lista barcode nel nuovo file
+        for barcode in listaBarcode:
+            file=open(nomeFile, 'a')
+            file.write(barcode)
+            file.write('\n') 
+        file.close()
+        #stampa messaggio di avvenuta scrittura del file
+        print('file ' + nomeFile + ' creato')
+    else:
+        print('nessun barcode da salvare')
